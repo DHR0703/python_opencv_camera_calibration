@@ -1,10 +1,9 @@
-import shutil
 import threading
 import time
 import pyrealsense2 as rs
 import numpy as np
 import cv2
-from os import path
+
 
 
 class RealSenseCamera:
@@ -59,7 +58,7 @@ class RealSenseCamera:
     def _display_and_capture(self):
         try:
             time.sleep(3)
-            while True:
+            while self.is_running:
                 frames = self.pipeline.wait_for_frames()
                 frames = self.align.process(frames)
 
@@ -110,8 +109,3 @@ class RealSenseCamera:
 
     def stop(self):
         self.is_running = False
-        self._display_thread.join()
-        self.pipeline.stop()
-
-    def cleanup(self):
-        self.stop()

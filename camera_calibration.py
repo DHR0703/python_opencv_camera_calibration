@@ -11,6 +11,10 @@ import cv2 as cv
 import numpy as np
 import glob
 
+# 相机内参矩阵
+CAMERA_INTRINSIC = [[609.441, 0, 321.084],
+                    [0, 607.96, 238.077],
+                    [0, 0, 1]]
 # 不使用e来表示小数,让控制台输出更加人性化
 np.set_printoptions(suppress=True)
 # 数据txt位置
@@ -29,11 +33,6 @@ RESULT_PATH = 'data/result.txt'
 w = 11
 h = 8
 checker_size = 15
-
-
-# w = 8
-# h = 5
-# checker_size = 21.5
 
 
 # 把矩阵写入到文件里,按照指定格式
